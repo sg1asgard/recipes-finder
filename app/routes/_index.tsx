@@ -46,7 +46,7 @@ export default function Index() {
         </div>
 
         <div>
-          <h3></h3>
+          <h3 className="text-2xl font-bold text-slate-800 pb-4">Recipes Categories</h3>
           <ul className="grid grid-cols-3 gap-4">
             {data.categories &&
               data.categories.map((category) => (
