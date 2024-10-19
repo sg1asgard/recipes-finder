@@ -1,8 +1,11 @@
+'use client';
+import { usePathname } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import FoodSearchLogo from "@/app/assets/images/food_search_logo.svg";
 
 export default function Header() {
+  const pathname = usePathname();
   return (
     <header>
       <div className="flex flex-row items-center py-4">
@@ -12,7 +15,12 @@ export default function Header() {
           </Link>
         </div>
         <div>
-          <Link href="/">Home</Link>
+          <nav>
+            <ul className="flex gap-x-5">
+              <Link href="/">Home</Link>
+              <Link href="recipes">Recipes</Link>
+            </ul>
+          </nav>
         </div>
       </div>
     </header>
