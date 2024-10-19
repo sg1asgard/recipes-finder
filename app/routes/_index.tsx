@@ -20,12 +20,6 @@ export default function Index() {
     console.log("button clicked", count);
   };
 
-  const [text, setText] = useState('');
-  const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    event.preventDefault();
-    console.log('search for:', event.target.value)
-  }
-
   return (
     <div className="container mx-auto">
       <NavHeader />
@@ -36,7 +30,7 @@ export default function Index() {
           </h1>
         </div>
         <div>
-          <SearchRecipes onChange={handleOnChange} />
+          <SearchRecipes />
         </div>
         <div className="mt-10">
           <ButtonPrimary onClick={handleClick}>Click to count</ButtonPrimary>
