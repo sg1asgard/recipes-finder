@@ -21,7 +21,7 @@ export default function Index() {
   };
 
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto max-w-4xl">
       <NavHeader />
       <main>
         <div className="py-6">

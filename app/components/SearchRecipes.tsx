@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 
 export default function SearchRecipes({
-  className,
-  ...props
+  className
 }: React.ComponentProps<"input">) {
   const [text, setText] = useState("");
   const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
