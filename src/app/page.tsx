@@ -1,18 +1,23 @@
-'use client';
+// 'use client';
+// import styled from "styled-components";
+// const Container = styled.div``;
 
-import Image from "next/image";
-import styled from "styled-components";
+import RandomRecipes from "@/app/components/RandomRecipes";
 
-const Container = styled.div``;
+export default async function Home() {
+  const response = await fetch(
+    `https://www.themealdb.com/api/json/v1/1/random.php`
+  );
+  const data = await response.json();
 
-export default function Home() {
   return (
-    <Container>
-      <div className="">
-        <main>
-          <h1>Home</h1>
-        </main>
-      </div>
-    </Container>
+    <div className="">
+      <main>
+        <h1>Home</h1>
+        <div>
+          <RandomRecipes />
+        </div>
+      </main>
+    </div>
   );
 }
