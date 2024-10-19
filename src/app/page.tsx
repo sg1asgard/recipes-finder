@@ -8,8 +8,9 @@ const Container = styled.div``;
 export default function Home() {
   return (
     <Container>
-      
+      <div className="">
+        <main></main>
+      </div>
     </Container>
-    
   );
 }
