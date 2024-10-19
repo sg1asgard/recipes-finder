@@ -46,12 +46,17 @@ export default function Index() {
 
         <div>
           <ul>
-            {data.categories && data.categories.map((category) => (
-              <li key={category.idCategory}>
-                <img src={category.strCategoryThumb} alt={category.strCategory} />
-                {category.strCategory}
-              </li>
-            ))}
+            {data.categories &&
+              data.categories.map((category) => (
+                <li key={category.idCategory}>
+                  <img
+                    src={category.strCategoryThumb}
+                    alt={category.strCategory}
+                  />
+                  <h3>{category.strCategory}</h3>
+                  <div>{category.strCategoryDescription}</div>
+                </li>
+              ))}
           </ul>
         </div>
 
