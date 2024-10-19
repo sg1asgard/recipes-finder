@@ -20,6 +20,7 @@ export default function Index() {
     console.log("button clicked", count);
   };
 
+  const [text, setText] = useState('');
   const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
     console.log('search for:', event.target.value)
