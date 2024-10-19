@@ -12,9 +12,12 @@ export const meta: MetaFunction = () => {
 };
 
 export default function Index() {
+  const [count, setCount] = useState(0);
+
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
-    console.log("button clicked");
+    setCount(count + 1)
+    console.log("button clicked", count);
   };
   return (
     <div className="container mx-auto">
@@ -23,6 +26,9 @@ export default function Index() {
         <h1 className="text-3xl font-bold underline">Hello world!</h1>
         <div className="mt-10">
           <ButtonPrimary onClick={handleClick}>Click to count</ButtonPrimary>
+        </div>
+        <div>
+          Number of cliks: {count}
         </div>
       </main>
     </div>
