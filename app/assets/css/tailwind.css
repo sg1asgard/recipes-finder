@@ -4,5 +4,5 @@
 
 html,
 body {
-  @apply bg-white dark:bg-gray-100 scroll-px-40;
+  @apply bg-white dark:bg-gray-100 px-4;
 }
