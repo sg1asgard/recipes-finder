@@ -9,7 +9,9 @@ export default function Home() {
   return (
     <Container>
       <div className="">
-        <main></main>
+        <main>
+          <h1>Home</h1>
+        </main>
       </div>
     </Container>
   );
