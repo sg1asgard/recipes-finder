@@ -40,24 +40,29 @@ export default function Index() {
             What would you like to eat today?
           </h1>
         </div>
-        <div>
+        
+        <div className="mb-12">
           <SearchRecipes />
         </div>
 
         <div>
-          <ul className="flex flex-col">
+          <h3></h3>
+          <ul className="grid grid-cols-3 gap-4">
             {data.categories &&
               data.categories.map((category) => (
-                <li key={category.idCategory} className="flex flex-row">
+                <li key={category.idCategory} className="flex flex-col bg-white p-6 text-center">
                   <div>
                     <img
                       src={category.strCategoryThumb}
                       alt={category.strCategory}
+                      width="162"
+                      className="mx-auto"
                     />
                   </div>
-                  <div className="flex-1">
-                    <h3>{category.strCategory}</h3>
-                    <p>{category.strCategoryDescription}</p>
+                  <div className="flex-1 pt-4">
+                    <strong className="text-lg">{category.strCategory}</strong>
+                    {/* <p>{category.strCategoryDescription.split(' ').slice(0, 16).join(' ') + 
+    (category.strCategoryDescription.split(' ').length > 16 ? '...' : '')}</p> */}
                   </div>
                 </li>
               ))}
