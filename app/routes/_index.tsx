@@ -22,6 +22,7 @@ export async function loader() {
 
 export default function Index() {
   const data = useLoaderData<typeof loader>();
+  console.log("data", data);
   const [count, setCount] = useState(0);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -32,7 +33,6 @@ export default function Index() {
 
   return (
     <div className="container mx-auto max-w-4xl">
-      {data}
       <NavHeader />
       <main>
         <div className="py-6">
@@ -43,10 +43,19 @@ export default function Index() {
         <div>
           <SearchRecipes />
         </div>
+
+        <div>
+          <ul>
+            {data.categories && data.categories.map((category) => (
+              <li key={category.idCategory}>{category.strCategory}</li>
+            ))}
+          </ul>
+        </div>
+
         <div className="mt-10">
           <ButtonPrimary onClick={handleClick}>Click to count</ButtonPrimary>
         </div>
-        <div>Number of cliks: {count}</div>
+        <div>Number of clicks: {count}</div>
       </main>
     </div>
   );
