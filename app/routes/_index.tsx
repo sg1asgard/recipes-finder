@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import type { MetaFunction } from "@remix-run/node";
+import { useLoaderData } from "@remix-run/react";
+import { MetaFunction, json } from "@remix-run/node";
 import ButtonPrimary from "~/components/atoms/ButtonPrimary";
 import NavHeader from "~/components/NavHeader";
 import SearchRecipes from "~/components/SearchRecipes";
@@ -11,7 +12,16 @@ export const meta: MetaFunction = () => {
   ];
 };
 
+export async function loader() {
+  const response = await fetch(
+    "https://www.themealdb.com/api/json/v1/1/categories.php"
+  );
+  const data = await response.json();
+  return json(data);
+}
+
 export default function Index() {
+  const data = useLoaderData<typeof loader>();
   const [count, setCount] = useState(0);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -22,6 +32,7 @@ export default function Index() {
 
   return (
     <div className="container mx-auto max-w-4xl">
+      {data}
       <NavHeader />
       <main>
         <div className="py-6">
