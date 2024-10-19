@@ -11,13 +11,13 @@ export default function SearchRecipes({
   };
 
   return (
-    <div className="flex flex-row">
+    <div className="flex flex-row items-center">
       <input
       onChange={handleOnChange}
         type="text"
         value={text}
         placeholder="Find a recipe..."
-        className={`w-full px-6 py-4 rounded-full ${className}`}
+        className={`m-auto w-full max-w-2xl px-6 py-4 rounded-full border-2 border-slate-300 focus-visible:border-indigo-500 ${className}`}
       />
     </div>
   );
