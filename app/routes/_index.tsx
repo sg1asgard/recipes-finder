@@ -45,16 +45,20 @@ export default function Index() {
         </div>
 
         <div>
-          <ul>
+          <ul className="flex flex-col">
             {data.categories &&
               data.categories.map((category) => (
-                <li key={category.idCategory}>
-                  <img
-                    src={category.strCategoryThumb}
-                    alt={category.strCategory}
-                  />
-                  <h3>{category.strCategory}</h3>
-                  <div>{category.strCategoryDescription}</div>
+                <li key={category.idCategory} className="flex flex-row">
+                  <div>
+                    <img
+                      src={category.strCategoryThumb}
+                      alt={category.strCategory}
+                    />
+                  </div>
+                  <div className="flex-1">
+                    <h3>{category.strCategory}</h3>
+                    <p>{category.strCategoryDescription}</p>
+                  </div>
                 </li>
               ))}
           </ul>
