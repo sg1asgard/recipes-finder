@@ -50,13 +50,13 @@ export default function Index() {
           <ul className="grid grid-cols-3 gap-4">
             {data.categories &&
               data.categories.map((category) => (
-                <li key={category.idCategory} className="flex flex-col bg-white p-6 text-center hover:shadow-lg transition-all duration-200 ease-in-out cursor-pointer rounded-2xl">
+                <li key={category.idCategory} className="flex flex-col bg-white p-6 text-center hover:shadow-lg transition-all duration-200 ease-in-out cursor-pointer rounded-2xl group">
                   <div>
                     <img
                       src={category.strCategoryThumb}
                       alt={category.strCategory}
                       width="162"
-                      className="mx-auto"
+                      className="mx-auto group-hover:scale-110 transition-all duration-200 ease-in-out"
                     />
                   </div>
                   <div className="flex-1 pt-4">
