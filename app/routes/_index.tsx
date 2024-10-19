@@ -1,4 +1,3 @@
-import React from "react";
 import type { MetaFunction } from "@remix-run/node";
 import ButtonPrimary from "~/components/atoms/ButtonPrimary";
 import NavHeader from "~/components/NavHeader";
@@ -21,7 +20,7 @@ export default function Index() {
       <main>
         <h1 className="text-3xl font-bold underline">Hello world!</h1>
         <div className="mt-10">
-          <ButtonPrimary onClick={handleClick} text="Click to count" />
+          <ButtonPrimary onClick={handleClick}>Click to count</ButtonPrimary>
         </div>
       </main>
     </div>

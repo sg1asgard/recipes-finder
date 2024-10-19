@@ -1,5 +1,13 @@
-export default function ButtonPrimary({text}) {
+import React from "react";
+
+export default function ButtonPrimary({
+    className,
+    ...props
+}: React.ComponentProps<'button'>) {
     return (
-        <button className="bg-indigo-600 text-white py-2 px-4 rounded-full hover:bg-indigo-500">{text}</button>
+        <button
+            className={`rounded-full bg-indigo-600 px-4 py-2 text-white hover:bg-indigo-500 ${className}`}
+            {...props}
+        />
     )
 }
