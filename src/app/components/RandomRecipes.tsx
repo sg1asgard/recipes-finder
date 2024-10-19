@@ -1,7 +1,7 @@
-export default function RandomRecipes() {
+export default function RandomRecipes({props}) {
     return (
         <div>
-            random recipes
+            {props}
         </div>
     )
 }
