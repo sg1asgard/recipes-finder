@@ -17,7 +17,7 @@ export default function SearchRecipes({
         type="text"
         value={text}
         placeholder="Find a recipe..."
-        className={`m-auto w-full max-w-2xl px-6 py-4 rounded-full border-2 border-slate-300 focus-visible:border-indigo-500 ${className}`}
+        className={`px-6 py-4 max-w-2xl mx-auto bg-white border-2 shadow-sm focus:shadow-xl border-slate-300 placeholder-slate-400 disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 focus:outline-none focus:border-indigo-500 focus:ring-indigo-500 block w-full rounded-full sm:text-sm focus:ring-1 disabled:shadow-none ${className}`}
       />
     </div>
   );
