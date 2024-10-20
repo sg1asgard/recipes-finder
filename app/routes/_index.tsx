@@ -7,8 +7,8 @@ import SearchRecipes from "~/components/SearchRecipes";
 
 export const meta: MetaFunction = () => {
   return [
-    { title: "New Remix App" },
-    { name: "description", content: "Welcome to Remix!" },
+    { title: "food search" },
+    { name: "description", content: "Search the best food recipes!" },
   ];
 };
 
