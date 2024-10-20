@@ -12,18 +12,19 @@ export const meta: MetaFunction = () => {
   ];
 };
 
+interface FoodCategory {
+  idCategory: string;
+  strCategory: string;
+  strCategoryThumb: string;
+  strCategoryDescription: string;
+}
+
 export async function loader() {
   const response = await fetch(
     "https://www.themealdb.com/api/json/v1/1/categories.php"
   );
-  const data: {
-    idCategory: string;
-    strCategory: string;
-    strCategoryThumb: string;
-    strCategoryDescription: string;
-  }[] = await response.json();
-
-  return json({ foodCategories: data });
+  const data = await response.json();
+  return json({ foodCategories: data.categories as FoodCategory[] });
 }
 
 export default function Index() {
@@ -55,8 +56,7 @@ export default function Index() {
           </h3>
           <ul className="grid grid-cols-3 gap-4">
             {data.foodCategories &&
-              data.foodCategories.categories &&
-              data.foodCategories.categories.map((category) => (
+              data.foodCategories.map((category: FoodCategory) => (
                 <li
                   key={category.idCategory}
                   className="flex flex-col bg-white p-6 text-center hover:shadow-lg transition-all duration-200 ease-in-out cursor-pointer rounded-2xl group"
@@ -71,9 +71,8 @@ export default function Index() {
                   </div>
                   <div className="flex-1 pt-4">
                     <strong className="text-lg">{category.strCategory}</strong>
-                    {/* Uncomment if you want to show description */}
                     {/* <p>{category.strCategoryDescription.split(' ').slice(0, 16).join(' ') + 
-            (category.strCategoryDescription.split(' ').length > 16 ? '...' : '')}</p> */}
+    (category.strCategoryDescription.split(' ').length > 16 ? '...' : '')}</p> */}
                   </div>
                 </li>
               ))}
