@@ -6,3 +6,8 @@ html,
 body {
   @apply bg-white dark:bg-gray-100 px-4;
 }
+
+a.transitioning {
+  view-transition-name: my-transition;
+}
+

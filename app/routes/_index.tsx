@@ -57,7 +57,7 @@ export default function Index() {
                 key={category.idCategory}
                 className="bg-white p-6 text-center hover:shadow-lg transition-all duration-200 ease-in-out cursor-pointer rounded-2xl group"
               >
-                <NavLink to={`/category/${category.strCategory}`}>
+                <NavLink to={`/category/${category.strCategory}`} viewTransition>
                   <div>
                     <img
                       src={category.strCategoryThumb}

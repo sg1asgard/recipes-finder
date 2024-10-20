@@ -5,7 +5,7 @@ export default function NavHeader() {
   return (
     <div className="flex flex-row items-center py-6">
       <div className="flex-1">
-        <NavLink to="/">
+        <NavLink to="/" viewTransition>
           <img
             src={RecipeFinderLogo}
             alt="recipe finder logo"
@@ -14,7 +14,7 @@ export default function NavHeader() {
         </NavLink>
       </div>
       <div>
-        <NavLink to="/">Home</NavLink>
+        <NavLink to="/" viewTransition>Home</NavLink>
       </div>
     </div>
   );
