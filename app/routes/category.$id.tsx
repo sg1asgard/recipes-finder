@@ -10,26 +10,21 @@ interface FoodCategoryDetails {
   idMeal: string;
 }
 
-interface CategoryName {
-  cat_name: string;
-}
-
 export const loader = async ({ params }: LoaderFunctionArgs) => {
-  const catName = params.id;
   const response = await fetch(
     `https://www.themealdb.com/api/json/v1/1/filter.php?c=${params.id}`
   );
   const data = await response.json();
-  return json({ mealsList: data.meals as FoodCategoryDetails[], catName });
+  return json({ mealsList: data.meals as FoodCategoryDetails[] });
 };
-
 
 const CategoryDetails = () => {
   const data = useLoaderData<typeof loader>();
-  const catName = useLoaderData<typeof loader>();
+  const { id: catName } = useParams();
+
   return (
     <MainLayout>
-      <PageTitle>Category: ...  </PageTitle>
+      <PageTitle>Category: {catName} </PageTitle>
 
       <div className="mb-12">
         <SearchRecipes />
