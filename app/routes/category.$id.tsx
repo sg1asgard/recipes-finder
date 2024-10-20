@@ -18,7 +18,7 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
     `https://www.themealdb.com/api/json/v1/1/filter.php?c=${params.id}`
   );
   const data = await response.json();
-  
+
   if (!data) {
     throw new Response("Not Found", { status: 404 });
   }
@@ -32,6 +32,7 @@ const CategoryDetails = () => {
 
   return (
     <MainLayout>
+      
       <PageTitle>Category: {catName} </PageTitle>
 
       <div className="mb-12">

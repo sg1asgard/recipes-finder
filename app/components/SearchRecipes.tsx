@@ -62,22 +62,22 @@ interface MealDBResponse {
   meals: Meal[];
 }
 
-export const action: ActionFunction = async ({ request }) => {
-  const formData = await request.formData();
-  const recipeTitle = formData.get("newSearch");
-  console.log("searched for:", recipeTitle);
+// export const action: ActionFunction = async ({ request }) => {
+//   const formData = await request.formData();
+//   const recipeTitle = formData.get("newSearch");
+//   console.log("searched for:", recipeTitle);
 
-  const response = await fetch(
-    `https://www.themealdb.com/api/json/v1/1/search.php?s=${recipeTitle}`
-  );
-  const data: MealDBResponse = await response.json();
-  return json({ foodRecipes: data });
-};
+//   const response = await fetch(
+//     `https://www.themealdb.com/api/json/v1/1/search.php?s=${recipeTitle}`
+//   );
+//   const data: MealDBResponse = await response.json();
+//   return json({ foodRecipes: data });
+// };
 
 export default function SearchRecipes({
   className,
 }: React.ComponentProps<"input">) {
-  const categories = useLoaderData<typeof action>();
+  // const categories = useLoaderData<typeof action>();
   const [text, setText] = useState("");
   const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setText(event.target.value);
