@@ -5,9 +5,10 @@ interface BreadcrumbProps {
 }
 const Breadcrumb = ({ className, category, recipe }: BreadcrumbProps) => {
   <div>
-    <ul className="flex flex-row">
+    <ul className={`flex flex-row ${className}`}>
       <li>Home</li>
-      <li>{category}</li>
+      { category ? <li>{category}</li> : ''}
+      { category ? <li>{recipe}</li> : ''}
     </ul>
   </div>;
 };
