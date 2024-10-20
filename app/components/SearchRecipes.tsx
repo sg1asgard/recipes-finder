@@ -19,7 +19,6 @@ export default function SearchRecipes({
   return (
     <Form
       className="w-full mx-auto max-w-2xl flex flex-row space-x-2 items-center"
-      method="get"
     >
       <input
         onChange={handleOnChange}
@@ -28,7 +27,7 @@ export default function SearchRecipes({
         placeholder="Find a recipe..."
         className={`px-5 py-3 mx-auto bg-white border-2 shadow-sm focus:shadow-xl border-slate-300 placeholder-slate-400 disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 focus:outline-none focus:border-amber-500 focus:ring-amber-500 block w-full rounded-full sm:text-sm focus:ring-1 disabled:shadow-none ${className}`}
       />
-      <ButtonPrimary>Search</ButtonPrimary>
+      <ButtonPrimary type="submit">Search</ButtonPrimary>
     </Form>
   );
 }
