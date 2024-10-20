@@ -14,9 +14,7 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
   const response = await fetch(
     `https://www.themealdb.com/api/json/v1/1/filter.php?c=${params.id}`
   );
-
   const data = await response.json();
-  console.log("category details", data);
   return json({ mealsList: data.meals as FoodCategoryDetails[] });
 };
 
@@ -49,8 +47,6 @@ const CategoryDetails = () => {
                 </div>
                 <div className="flex-1 pt-4">
                   <strong className="text-lg">{meal.strMeal}</strong>
-                  {/* <p>{category.strCategoryDescription.split(' ').slice(0, 16).join(' ') + 
-    (category.strCategoryDescription.split(' ').length > 16 ? '...' : '')}</p> */}
                 </div>
               </li>
             ))}
