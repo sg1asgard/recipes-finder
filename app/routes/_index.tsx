@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { NavLink, useLoaderData } from "@remix-run/react";
 import { MetaFunction, json } from "@remix-run/node";
 import ButtonPrimary from "~/components/atoms/ButtonPrimary";
-import NavHeader from "~/components/NavHeader";
 import SearchRecipes from "~/components/SearchRecipes";
 import MainLayout from "~/layout/main-layout";
 import PageTitle from "~/components/atoms/PageTitle";

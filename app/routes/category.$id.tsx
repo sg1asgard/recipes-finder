@@ -1,3 +1,4 @@
+import invariant from "tiny-invariant";
 import { json, LoaderFunctionArgs } from "@remix-run/node";
 import { useLoaderData, useParams } from "@remix-run/react";
 import PageTitle from "~/components/atoms/PageTitle";
@@ -11,6 +12,8 @@ interface FoodCategoryDetails {
 }
 
 export const loader = async ({ params }: LoaderFunctionArgs) => {
+  // check if the passed params are there / true, if not stop and through and error
+  invariant(params.id, "Missing category id!");
   const response = await fetch(
     `https://www.themealdb.com/api/json/v1/1/filter.php?c=${params.id}`
   );
