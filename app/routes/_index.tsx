@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useLoaderData } from "@remix-run/react";
+import { NavLink, useLoaderData } from "@remix-run/react";
 import { MetaFunction, json } from "@remix-run/node";
 import ButtonPrimary from "~/components/atoms/ButtonPrimary";
 import NavHeader from "~/components/NavHeader";
@@ -55,21 +55,23 @@ export default function Index() {
             data.foodCategories.map((category: FoodCategory) => (
               <li
                 key={category.idCategory}
-                className="flex flex-col bg-white p-6 text-center hover:shadow-lg transition-all duration-200 ease-in-out cursor-pointer rounded-2xl group"
+                className="bg-white p-6 text-center hover:shadow-lg transition-all duration-200 ease-in-out cursor-pointer rounded-2xl group"
               >
-                <div>
-                  <img
-                    src={category.strCategoryThumb}
-                    alt={category.strCategory}
-                    width="162"
-                    className="mx-auto group-hover:scale-110 transition-all duration-200 ease-in-out"
-                  />
-                </div>
-                <div className="flex-1 pt-4">
-                  <strong className="text-lg">{category.strCategory}</strong>
-                  {/* <p>{category.strCategoryDescription.split(' ').slice(0, 16).join(' ') + 
+                <NavLink to={`/category/${category.strCategory}`}>
+                  <div>
+                    <img
+                      src={category.strCategoryThumb}
+                      alt={category.strCategory}
+                      width="162"
+                      className="mx-auto group-hover:scale-110 transition-all duration-200 ease-in-out"
+                    />
+                  </div>
+                  <div className="flex-1 pt-4">
+                    <strong className="text-lg">{category.strCategory}</strong>
+                    {/* <p>{category.strCategoryDescription.split(' ').slice(0, 16).join(' ') + 
     (category.strCategoryDescription.split(' ').length > 16 ? '...' : '')}</p> */}
-                </div>
+                  </div>
+                </NavLink>
               </li>
             ))}
         </ul>
