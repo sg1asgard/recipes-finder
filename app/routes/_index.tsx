@@ -38,7 +38,7 @@ export async function loader() {
 }
 
 export default function Index() {
-  const foodCategories = useLoaderData<typeof loader>();
+  const categories = useLoaderData<typeof loader>();
   const [count, setCount] = useState(0);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -59,8 +59,8 @@ export default function Index() {
           Recipes Categories
         </h3>
         <ul className="grid grid-cols-3 gap-4">
-          {foodCategories &&
-            foodCategories.foodCategories.map((category: FoodCategory) => (
+          {categories &&
+            categories.foodCategories.map((category: FoodCategory) => (
               <li
                 key={category.idCategory}
                 className="bg-white p-6 text-center hover:shadow-lg transition-all duration-200 ease-in-out cursor-pointer rounded-2xl group"
