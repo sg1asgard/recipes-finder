@@ -21,20 +21,24 @@ interface FoodCategory {
 }
 
 export async function loader() {
-  const response = await fetch(
-    "https://www.themealdb.com/api/json/v1/1/categories.php"
-  );
-  const data = await response.json();
-  
-  if (!data) {
-    throw new Response("Not Found", { status: 404 });
+  try {
+    const response = await fetch(
+      "https://www.themealdb.com/api/json/v1/1/categories.php"
+    );
+    const data = await response.json();
+
+    if (!data) {
+      throw new Response("Not Found", { status: 404 });
+    }
+
+    return json({ foodCategories: data.categories as FoodCategory[] });
+  } catch (error) {
+    console.log(error);
   }
-  
-  return json({ foodCategories: data.categories as FoodCategory[] });
 }
 
 export default function Index() {
-  const data = useLoaderData<typeof loader>();
+  const foodCategories = useLoaderData<typeof loader>();
   const [count, setCount] = useState(0);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -55,13 +59,16 @@ export default function Index() {
           Recipes Categories
         </h3>
         <ul className="grid grid-cols-3 gap-4">
-          {data.foodCategories &&
-            data.foodCategories.map((category: FoodCategory) => (
+          {foodCategories &&
+            foodCategories.foodCategories.map((category: FoodCategory) => (
               <li
                 key={category.idCategory}
                 className="bg-white p-6 text-center hover:shadow-lg transition-all duration-200 ease-in-out cursor-pointer rounded-2xl group"
               >
-                <NavLink to={`/category/${category.strCategory}`} viewTransition>
+                <NavLink
+                  to={`/category/${category.strCategory}`}
+                  viewTransition
+                >
                   <div>
                     <img
                       src={category.strCategoryThumb}
