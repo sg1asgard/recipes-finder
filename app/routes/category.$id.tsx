@@ -4,6 +4,7 @@ import { useLoaderData, useParams } from "@remix-run/react";
 import PageTitle from "~/components/atoms/PageTitle";
 import SearchRecipes from "~/components/SearchRecipes";
 import MainLayout from "~/layout/main-layout";
+import BreadcrumbNavigation from "~/components/molecules/BreadcrumbNavigation";
 
 interface FoodCategoryDetails {
   strMeal: string;
@@ -32,7 +33,7 @@ const CategoryDetails = () => {
 
   return (
     <MainLayout>
-      
+      <BreadcrumbNavigation category={catName} />
       <PageTitle>Category: {catName} </PageTitle>
 
       <div className="mb-12">
