@@ -16,8 +16,14 @@ export async function loader() {
   const response = await fetch(
     "https://www.themealdb.com/api/json/v1/1/categories.php"
   );
-  const data = await response.json();
-  return json(data);
+  const data: {
+    idCategory: string;
+    strCategory: string;
+    strCategoryThumb: string;
+    strCategoryDescription: string;
+  }[] = await response.json();
+
+  return json({ foodCategories: data });
 }
 
 export default function Index() {
@@ -38,17 +44,23 @@ export default function Index() {
             What would you like to eat today?
           </h1>
         </div>
-        
+
         <div className="mb-12">
           <SearchRecipes />
         </div>
 
         <div>
-          <h3 className="text-2xl font-bold text-slate-800 pb-4">Recipes Categories</h3>
+          <h3 className="text-2xl font-bold text-slate-800 pb-4">
+            Recipes Categories
+          </h3>
           <ul className="grid grid-cols-3 gap-4">
-            {data.categories &&
-              data.categories.map((category) => (
-                <li key={category.idCategory} className="flex flex-col bg-white p-6 text-center hover:shadow-lg transition-all duration-200 ease-in-out cursor-pointer rounded-2xl group">
+            {data.foodCategories &&
+              data.foodCategories.categories &&
+              data.foodCategories.categories.map((category) => (
+                <li
+                  key={category.idCategory}
+                  className="flex flex-col bg-white p-6 text-center hover:shadow-lg transition-all duration-200 ease-in-out cursor-pointer rounded-2xl group"
+                >
                   <div>
                     <img
                       src={category.strCategoryThumb}
@@ -59,8 +71,9 @@ export default function Index() {
                   </div>
                   <div className="flex-1 pt-4">
                     <strong className="text-lg">{category.strCategory}</strong>
+                    {/* Uncomment if you want to show description */}
                     {/* <p>{category.strCategoryDescription.split(' ').slice(0, 16).join(' ') + 
-    (category.strCategoryDescription.split(' ').length > 16 ? '...' : '')}</p> */}
+            (category.strCategoryDescription.split(' ').length > 16 ? '...' : '')}</p> */}
                   </div>
                 </li>
               ))}
