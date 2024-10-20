@@ -40,7 +40,7 @@ export default function Index() {
 
   return (
     <MainLayout>
-      <PageTitle>What would you like to eat today?</PageTitle>     
+      <PageTitle>What would you like to eat today?</PageTitle>
 
       <div className="mb-12">
         <SearchRecipes />
