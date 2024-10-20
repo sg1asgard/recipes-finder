@@ -25,6 +25,11 @@ export async function loader() {
     "https://www.themealdb.com/api/json/v1/1/categories.php"
   );
   const data = await response.json();
+  
+  if (!data) {
+    throw new Response("Not Found", { status: 404 });
+  }
+  
   return json({ foodCategories: data.categories as FoodCategory[] });
 }
 
