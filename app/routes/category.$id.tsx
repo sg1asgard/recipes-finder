@@ -18,6 +18,11 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
     `https://www.themealdb.com/api/json/v1/1/filter.php?c=${params.id}`
   );
   const data = await response.json();
+  
+  if (!data) {
+    throw new Response("Not Found", { status: 404 });
+  }
+
   return json({ mealsList: data.meals as FoodCategoryDetails[] });
 };
 
