@@ -14,7 +14,14 @@ export default function NavHeader() {
         </NavLink>
       </div>
       <div>
-        <NavLink to="/" viewTransition>Home</NavLink>
+        <div className="flex flex-row space-x-6">
+          <NavLink to="/" viewTransition className="hover:underline">
+            Home
+          </NavLink>
+          <NavLink to="https://supakyattsu.com" target="_blank" viewTransition className="hover:underline">
+            About <span className="icon-[ph--phosphor-logo]"></span>
+          </NavLink>
+        </div>
       </div>
     </div>
   );
