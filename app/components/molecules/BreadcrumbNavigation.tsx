@@ -24,7 +24,11 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({
             <span className="">&gt;</span> <span>{category}</span>
           </li>
         )}
-        {recipe && <li>{recipe}</li>}
+        {recipe && (
+          <li className="flex flex-row space-x-2 ps-2">
+            <span className="">&gt;</span> <span>{recipe}</span>
+          </li>
+        )}
       </ul>
     </div>
   );
