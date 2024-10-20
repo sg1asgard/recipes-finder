@@ -22,13 +22,11 @@ export async function loader() {
 
 export default function Index() {
   const data = useLoaderData<typeof loader>();
-  console.log("data", data);
   const [count, setCount] = useState(0);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     setCount(count + 1);
-    console.log("button clicked", count);
   };
 
   return (
