@@ -1,56 +1,74 @@
 import React, { useState } from "react";
-import { useLoaderData } from "@remix-run/react";
+import { NavLink, useLoaderData } from "@remix-run/react";
 import { MetaFunction, json } from "@remix-run/node";
 import ButtonPrimary from "~/components/atoms/ButtonPrimary";
-import NavHeader from "~/components/NavHeader";
 import SearchRecipes from "~/components/SearchRecipes";
+import MainLayout from "~/layout/main-layout";
+import PageTitle from "~/components/atoms/PageTitle";
 
 export const meta: MetaFunction = () => {
   return [
-    { title: "New Remix App" },
-    { name: "description", content: "Welcome to Remix!" },
+    { title: "food search" },
+    { name: "description", content: "Search the best food recipes!" },
   ];
 };
 
+interface FoodCategory {
+  idCategory: string;
+  strCategory: string;
+  strCategoryThumb: string;
+  strCategoryDescription: string;
+}
+
 export async function loader() {
-  const response = await fetch(
-    "https://www.themealdb.com/api/json/v1/1/categories.php"
-  );
-  const data = await response.json();
-  return json(data);
+  try {
+    const response = await fetch(
+      "https://www.themealdb.com/api/json/v1/1/categories.php"
+    );
+    const data = await response.json();
+
+    if (!data) {
+      throw new Response("Not Found", { status: 404 });
+    }
+
+    return json({ foodCategories: data.categories as FoodCategory[] });
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 export default function Index() {
-  const data = useLoaderData<typeof loader>();
-  console.log("data", data);
+  const categories = useLoaderData<typeof loader>();
   const [count, setCount] = useState(0);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     setCount(count + 1);
-    console.log("button clicked", count);
   };
 
   return (
-    <div className="container mx-auto max-w-4xl">
-      <NavHeader />
-      <main>
-        <div className="py-6">
-          <h1 className="text-3xl font-bold w-full text-center">
-            What would you like to eat today?
-          </h1>
-        </div>
-        
-        <div className="mb-12">
-          <SearchRecipes />
-        </div>
+    <MainLayout>
+      <PageTitle>What would you like to eat today?</PageTitle>
 
-        <div>
-          <h3 className="text-2xl font-bold text-slate-800 pb-4">Recipes Categories</h3>
-          <ul className="grid grid-cols-3 gap-4">
-            {data.categories &&
-              data.categories.map((category) => (
-                <li key={category.idCategory} className="flex flex-col bg-white p-6 text-center hover:shadow-lg transition-all duration-200 ease-in-out cursor-pointer rounded-2xl group">
+      <div className="mb-12">
+        <SearchRecipes />
+      </div>
+
+      <div>
+        <h3 className="text-2xl font-bold text-slate-800 pb-4">
+          Recipes Categories
+        </h3>
+        <ul className="grid grid-cols-3 gap-4">
+          {categories &&
+            categories.foodCategories.map((category: FoodCategory) => (
+              <li
+                key={category.idCategory}
+                className="bg-white p-6 text-center hover:shadow-lg transition-all duration-200 ease-in-out cursor-pointer rounded-2xl group"
+              >
+                <NavLink
+                  to={`/category/${category.strCategory}`}
+                  viewTransition
+                >
                   <div>
                     <img
                       src={category.strCategoryThumb}
@@ -64,16 +82,16 @@ export default function Index() {
                     {/* <p>{category.strCategoryDescription.split(' ').slice(0, 16).join(' ') + 
     (category.strCategoryDescription.split(' ').length > 16 ? '...' : '')}</p> */}
                   </div>
-                </li>
-              ))}
-          </ul>
-        </div>
+                </NavLink>
+              </li>
+            ))}
+        </ul>
+      </div>
 
-        <div className="mt-10">
-          <ButtonPrimary onClick={handleClick}>Click to count</ButtonPrimary>
-        </div>
-        <div>Number of clicks: {count}</div>
-      </main>
-    </div>
+      <div className="mt-10">
+        <ButtonPrimary onClick={handleClick}>Click to count</ButtonPrimary>
+      </div>
+      <div>Number of clicks: {count}</div>
+    </MainLayout>
   );
 }
