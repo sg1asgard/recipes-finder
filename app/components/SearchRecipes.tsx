@@ -1,6 +1,6 @@
 import type { ActionFunction } from "@remix-run/node";
 import { json, redirect } from "@remix-run/node";
-import { Form } from "@remix-run/react";
+import { Form, useLoaderData } from "@remix-run/react";
 import React, { useState } from "react";
 
 interface Meal {
@@ -71,12 +71,13 @@ export const action: ActionFunction = async ({ request }) => {
     `https://www.themealdb.com/api/json/v1/1/search.php?s=${recipeTitle}`
   );
   const data: MealDBResponse = await response.json();
-  return data.meals ? data.meals[0] : null;
+  return json({ foodRecipes: data });
 };
 
 export default function SearchRecipes({
   className,
 }: React.ComponentProps<"input">) {
+  const categories = useLoaderData<typeof action>();
   const [text, setText] = useState("");
   const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setText(event.target.value);
