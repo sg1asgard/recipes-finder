@@ -18,7 +18,7 @@ export default function SearchRecipes({
 
   return (
     <Form
-      className="w-full mx-auto max-w-2xl flex flex-row items-center"
+      className="w-full mx-auto max-w-2xl flex flex-row space-x-2 items-center"
       method="get"
     >
       <input
